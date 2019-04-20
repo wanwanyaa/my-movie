@@ -6,7 +6,9 @@
     <van-nav-bar >
       <span class="address" slot="left" >深圳 <i class="iconfont icon-sanjiaoxia"></i></span>
       <van-tabs v-model="active" slot="title" title-active-color="#ef4238" @click="changeType">
-        <van-tab title="正在热映">内容 1</van-tab>
+        <van-tab title="正在热映">
+          <HotShowing/>
+        </van-tab>
         <van-tab title="即将上映">内容 2</van-tab>
       </van-tabs>
       <van-icon name="search" slot="right" />
@@ -15,6 +17,7 @@
 </template>
 
 <script>
+import HotShowing from '@/components/HotShowing.vue'
 import { mapActions } from 'vuex'
 export default {
   data () {
@@ -22,6 +25,9 @@ export default {
     return {
       active: active
     }
+  },
+  components: {
+    HotShowing
   },
   methods: {
     ...mapActions('film', [
@@ -69,6 +75,16 @@ export default {
   .van-icon-search{
     font-size: 25px;
     color: #e54847
+  }
+  .van-ellipsis{
+    overflow: visible;
+  }
+  .van-tabs__content{
+    width:375px;
+    position: absolute;
+    top:46px;
+    left:-78px;
+    z-index: 999;
   }
 }
 </style>

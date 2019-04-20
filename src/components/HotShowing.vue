@@ -100,6 +100,7 @@
                 box-sizing: border-box;
                 line-height: 1;
                 overflow: hidden;
+                text-align: left;
                 .score{
                     font-size: 13px;
                     color: #666;
