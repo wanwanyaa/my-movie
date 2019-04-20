@@ -2,9 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-// import { } from 'vant' 需要vant插件是导入
+import { Tabbar, TabbarItem } from 'vant'
 
 Vue.config.productionTip = false
+
+Vue.use(Tabbar)
+  .use(TabbarItem)
 
 new Vue({
   router,
