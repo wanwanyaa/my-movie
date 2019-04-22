@@ -3,14 +3,16 @@
     <div class="my-title">
       <p>猫眼电影</p>
     </div>
-    <van-tabs v-model="active">
+    <van-tabs v-model="active" @click="changeType">
       <van-tab disabled>
         <span class="address" slot="title" >深圳 <i class="iconfont icon-sanjiaoxia"></i></span>
       </van-tab>
       <van-tab title="正在热映">
         <HotShowing/>
       </van-tab>
-      <van-tab title="即将上映">内容 3</van-tab>
+      <van-tab title="即将上映">
+        <Advance/>
+      </van-tab>
       <van-tab disabled><van-icon name="search" slot="title" /></van-tab>
     </van-tabs>
   </div>
@@ -18,24 +20,27 @@
 
 <script>
 import HotShowing from '@/components/HotShowing.vue'
+import Advance from '@/components/Advance.vue'
 import { mapActions } from 'vuex'
 export default {
   data () {
-    let active = this.$route.params.filmType === 'hotPlaying' ? 0 : 1
+    let active = this.$route.params.filmType === 'hotPlaying' ? 1 : 2
     return {
       active: active
     }
   },
   components: {
-    HotShowing
+    HotShowing,
+    Advance
   },
   methods: {
     ...mapActions('film', [
       'getOneFilmList',
-      'getNextFilmList'
+      'getNextFilmList',
+      'getFilmAdvToplist'
     ]),
     changeType (index, active) {
-      let filmType = index === 0 ? 'hotPlaying' : 'shownSoon'
+      let filmType = index === 1 ? 'hotPlaying' : 'shownSoon'
       this.$router.replace({
         name: 'films',
         params: {
@@ -44,10 +49,6 @@ export default {
       })
       console.log(index)
     }
-  },
-  created () {
-    // this.getOneFilmList()
-    console.log(this.$route)
   }
 }
 </script>
