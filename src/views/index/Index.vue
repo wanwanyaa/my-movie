@@ -23,6 +23,9 @@ export default {
 <style lang="less">
 @import '~@/style/reset.css';
 .my-home {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   .van-hairline--top-bottom{
     .iconfont{
       font-size: 25px!important;

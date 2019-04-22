@@ -2,56 +2,90 @@ import axios from 'axios'
 // import { Toast } from 'vant'
 
 const state = {
-  filmList: [],
-  movieIds: ['1212492,1167831,248906,1219670,1206415,1156894,1262586,247295,1206605,368260',
-  '1262087,1218727,343344,1243904,883196,1213175,1228750,1206824,1197466,245881',
-  '345875,1229702,1206939,672279,1239678,1239281,410629,1259639,1230152,507792',
-'1217497,1236912,1257272,1230119,672379,1245589,1277746,343987'],
-  pageNum: 0
+  filmList: [],     // 影片数据
+  movieIds: [],    // 影片id
+  newMovieIds: [],
+  pageNum: 0,     // 页码，默认为0 实际为第二次请求获取的页码 第二页
+  filmPageSize: 10,    // 默认每页显示十条
+  filmTotal: 40,      // 影片总条数，后面会获取替换掉
+  loading: false     // 加载状态
+}
+
+const getters = {
+  filmPageTotal (state) {
+    return Math.ceil((state.filmTotal - 12) / state.filmPageSize)
+  },
+  finished (state, getters) {
+    return state.pageNum === getters.filmPageTotal
+  }
 }
 
 const mutations = {
-  setFilmlist (state, list) {
+  getMovieIds (state, list) {
+    state.movieIds = list
+  },
+  setMovieIds (state, list) {
+    var n = state.pageNum * 10
+    state.newMovieIds = list.slice(12+n,22+n)
+  },
+  setFilmList (state, list) {
     state.filmList = list
+  },
+  addFilmList (state, list) {
+    state.filmList.push(...list)
+  },
+  setFilmTotal (state, total) {
+    state.filmTotal = total
   },
   setPageNum (state) {
     if(state.pageNum<4){
       state.pageNum++
     }
+  },
+  /**
+   * 替换请求地址中图片路径
+   * @param {Array} arr 获取到的数据
+   */
+  changeUrl (state, arr) {
+    arr.forEach(x => {
+      x.img = x.img.replace('w.h','128.180')
+    });
+  },
+  // 设置请求状态
+  setLoading (state, bol) {
+    state.loading = bol
   }
 }
 
 const actions = {
   // 第一次请求时得到的数据
   getOneFilmList ({ commit }) {
-    axios.get('/maoyan/ajax/movieOnInfoList?token=', {
-      params: {
-        movieIds: '1262087,1218727,343344,1243904,883196,1213175,1228750,1206824,1197466,245881'
-      }
-    }, {
-      headers: {
-        'X-Requested-With': XMLHttpRequest
-      }
-    }).then(res => {
+    axios.get('/maoyan/ajax/movieOnInfoList?token=')
+    .then(res => {
       let result = res.data
       console.log(result)
+      commit('getMovieIds', result.movieIds)
+      commit('setFilmTotal', result.total)
+      commit('changeUrl', result.movieList)
+      commit('setFilmList', result.movieList)
+      commit('setLoading', false)
     })
   },
-
   // 往后请求时得到的数据
   getNextFilmList ({ commit, state }) {
-    axios.get('/maoyan/ajax/moreComingList?token=', {
-      params: {
-        movieIds: state.movieIds[state.pageNum]
-      }
-    }, {
-      headers: {
-        'X-Requested-With': XMLHttpRequest
-      }
-    }).then(res => {
-      let result = res.data
-      console.log(result)
-    })
+      commit('setMovieIds', state.movieIds)
+      axios.get('/maoyan/ajax/moreComingList?token=', {
+        params: {
+          movieIds: state.newMovieIds.join(',')
+        }
+      }).then(res => {
+        let result = res.data
+        console.log(result, 'getNextFilmList')
+        commit('changeUrl', result.coming)
+        commit('addFilmList', result.coming)
+        commit('setPageNum')
+        commit('setLoading', false)
+      })
   }
 }
 
@@ -59,5 +93,6 @@ export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
+  getters
 }

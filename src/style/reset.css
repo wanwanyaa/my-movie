@@ -8,3 +8,8 @@ a,u{text-decoration:none}
 h1,h2,h3,h4,h5,h6{font-size:16px;font-weight:normal;}
 img{display:block;}
 .clear_fix:after{content:".";clear:both;display:block;height:0;overflow:hidden;visibility:hidden;}
+
+/* ================= */
+html, body {
+  height: 100%;
+}

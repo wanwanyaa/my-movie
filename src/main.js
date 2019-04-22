@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { Tabbar, TabbarItem, NavBar, Tab, Tabs, Icon } from 'vant'
+import { Tabbar, TabbarItem, NavBar, Tab, Tabs, Icon, List } from 'vant'
 
 Vue.config.productionTip = false
 
@@ -12,6 +12,7 @@ Vue.use(Tabbar)
   .use(Tab)
   .use(Tabs)
   .use(Icon)
+  .use(List)
 
 new Vue({
   router,
