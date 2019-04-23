@@ -21,7 +21,6 @@
 <script>
 import HotShowing from '@/components/HotShowing.vue'
 import Advance from '@/components/Advance.vue'
-import { mapActions } from 'vuex'
 export default {
   data () {
     let active = this.$route.params.filmType === 'hotPlaying' ? 1 : 2
@@ -34,11 +33,6 @@ export default {
     Advance
   },
   methods: {
-    ...mapActions('film', [
-      'getOneFilmList',
-      'getNextFilmList',
-      'getFilmAdvToplist'
-    ]),
     changeType (index, active) {
       let filmType = index === 1 ? 'hotPlaying' : 'shownSoon'
       this.$router.replace({
@@ -47,7 +41,6 @@ export default {
           filmType
         }
       })
-      console.log(index)
     }
   }
 }
@@ -121,4 +114,3 @@ export default {
   }
 }
 </style>
-

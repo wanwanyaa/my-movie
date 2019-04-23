@@ -54,44 +54,38 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions, mapGetters } from "vuex";
+import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
   computed: {
-    ...mapState("film", ["advTopList", "advBlist"]),
-    ...mapGetters('film', [
+    ...mapState('films', ['advTopList', 'advBlist', 'secFlag']),
+    ...mapGetters('films', [
       'finished'
     ]),
     loading: {
-        get () {
-          return this.$store.state.film.loading
-        },
-        set (value) {
-          return this.$store.commit('film/setLoading', value)
-        }
+      get () {
+        return this.$store.state.films.loading
+      },
+      set (value) {
+        return this.$store.commit('films/setLoading', value)
       }
-  },
-  methods: {
-    ...mapActions("film", [
-      "getFilmAdvToplist",
-      "getFilmAdvBlist"
-    ]),
-    onLoad () {
-      this.getFilmAdvBlist()
     }
   },
-  mounted () {
-    console.log("huoqu");
-    this.getFilmAdvToplist();
-    this.getFilmAdvBlist();
-  },
-  beforeDestroy() {
-    console.log('xiaoshuila')
-  },
-  beforeRouteEnter (to, from, next) {
-    console.log(11111)
-    next()
+  methods: {
+    ...mapActions('films', [
+      'getFilmAdvToplist',
+      'getFilmAdvBlist',
+      'getNextAdvBList'
+    ]),
+    onLoad () {
+      if (this.secFlag) {
+        this.getFilmAdvBlist()
+        this.getFilmAdvToplist()
+      } else {
+        this.getNextAdvBList()
+      }
+    }
   }
-};
+}
 </script>
 
 <style lang="less">

@@ -38,50 +38,44 @@
   </ul>
 </template>
 <script>
-import { mapState, mapActions, mapGetters} from 'vuex'
- export default {
-   data() {
+import { mapState, mapActions, mapGetters } from 'vuex'
+export default {
+  data () {
     return {
       flag: true
-    };
+    }
   },
-   computed: {
-     ...mapState('film', [
-       'filmList'
-      ]),
-      ...mapGetters('film', [
-        'finished'
-      ]),
-      loading: {
-        get () {
-          return this.$store.state.film.loading
-        },
-        set (value) {
-          return this.$store.commit('film/setLoading', value)
-        }
+  computed: {
+    ...mapState('film', [
+      'filmList'
+    ]),
+    ...mapGetters('film', [
+      'finished'
+    ]),
+    loading: {
+      get () {
+        return this.$store.state.film.loading
+      },
+      set (value) {
+        return this.$store.commit('film/setLoading', value)
       }
-   },
-   methods: {
-      ...mapActions('film', [
-        'getOneFilmList',
-        'getNextFilmList',
-      ]),
-     onLoad () {
-       if (this.flag === true) {
+    }
+  },
+  methods: {
+    ...mapActions('film', [
+      'getOneFilmList',
+      'getNextFilmList'
+    ]),
+    onLoad () {
+      if (this.flag === true) {
         this.getOneFilmList()
         this.flag = false
-       } else {
-         this.getNextFilmList()
-       }
-     }
-   },
-  beforeRouteEnter (to, from, next) {
-    // 导航离开该组件的对应路由时调用
-    // 可以访问组件实例 `this`
-    console.log('sdasdasdasd')
-    next()
+      } else {
+        this.getNextFilmList()
+      }
+    }
   }
- }
+}
 </script>
 <style lang="less">
 .main{
