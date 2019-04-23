@@ -8,7 +8,12 @@
         @load="onLoad"
       >
       <!--购买-->
-      <li class="main-li" v-for="item in filmList" :key="item.id">
+      <router-link
+        class="main-li"
+        v-for="item in filmList"
+        :key="item.id" tag="li"
+        :to="{ name: 'details', params: { filmId: item.id } }"
+      >
         <div class="avatar">
           <img :src="item.img" alt="">
         </div>
@@ -33,7 +38,7 @@
             </div>
           </div>
         </div>
-      </li>
+      </router-link>
     </van-list>
   </ul>
 </template>

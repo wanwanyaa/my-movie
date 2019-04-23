@@ -5,6 +5,8 @@ import Film from '@/views/index/Film.vue'
 import Cinema from '@/views/index/Cinema.vue'
 import Center from '@/views/index/Center.vue'
 import City from '@/views/city/Index.vue'
+import Detail from '@/views/detail/Index.vue'
+
 
 Vue.use(VueRouter)
 
@@ -17,10 +19,12 @@ const router = new VueRouter({
         { path: 'films/:filmType', name: 'films', component: Film, meta: { tabNum: 0} },
         { path: 'cinemas', name: 'cinemas', component: Cinema, meta: { tabNum: 1} },
         { path: 'centers', name: 'centers', component: Center, meta: { tabNum: 2} },
-        { path: '', redirect: '/films/hotPlaying' }
+        { path: '', redirect: '/films/hotPlaying' },
       ]
     },
-    { path: '/city', name: 'city', component: City }
+    { path: '/city', name: 'city', component: City },
+    { path: '/details/:filmId', name: 'details', component: Detail },
+
   ]
 })
 
