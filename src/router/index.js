@@ -4,7 +4,7 @@ import Index from '@/views/index/Index.vue'
 import Film from '@/views/index/Film.vue'
 import Cinema from '@/views/index/Cinema.vue'
 import Center from '@/views/index/Center.vue'
-
+import search from '@/views/search/Index.vue'
 
 
 Vue.use(VueRouter)
@@ -20,6 +20,9 @@ const router = new VueRouter({
         { path: 'centers', name: 'centers', component: Center, meta: { tabNum: 2} },
         { path: '', redirect: '/films/hotPlaying' }
       ]
+    },
+    {
+      path: '/search', name: 'search' , component: search
     }
   ]
 })
