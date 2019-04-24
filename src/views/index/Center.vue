@@ -35,7 +35,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style scoped lang="less">
 .van-tabs__line {
   background: #df2d2d;
   border-radius: 0;

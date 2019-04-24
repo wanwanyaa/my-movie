@@ -13,7 +13,7 @@
       <van-tab title="即将上映">
         <Advance/>
       </van-tab>
-      <router-link to="search"><van-tab disabled><van-icon name="search" slot="title" /></van-tab></router-link>
+      <van-tab disabled><van-icon name="search" slot="title" /></van-tab>
     </van-tabs>
   </div>
 </template>

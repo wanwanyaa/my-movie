@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <div class="head">
+    <div class="heads">
       <van-nav-bar
       title="猫眼电影"
       left-arrow
@@ -147,7 +147,8 @@ export default {
 
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+
 .van-search{
   height: 47px;
 }
