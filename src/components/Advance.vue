@@ -1,6 +1,6 @@
 <template>
   <div class="my-adv">
-    <ul class="bottom-box">
+    <ul class="bottom-box" >
       <van-list
         v-model="loading"
         :finished="finished"
@@ -25,30 +25,34 @@
             </li>
           </ul>
         </div>
-        <li class="main-li-advance" v-for="item in advBlist" :key="item.id">
-          <div class="avatar">
-            <img :src="item.img" alt>
-          </div>
-          <div class="avatar-right">
-            <div class="title">
-              <div class="title-top">
-                <div class="title-main">{{item.nm}}</div>
-                <span class="version"></span>
-              </div>
-              <div class="title-bot">
-                <div class="score">
-                  <span class="grade">{{item.wish}}</span>
-                  <span class="score-line">人想看</span>
+        <div class="film-adv" v-for="movie in advDate" :key="movie.filmDate">
+          <p class="film-date">{{movie.filmDate}}</p>
+          <li class="main-li-advance" v-for="item in movie.list" :key="item.id">
+            <div class="avatar">
+              <img :src="item.img" alt>
+            </div>
+            <div class="avatar-right">
+              <div class="title">
+                <div class="title-top">
+                  <div class="title-main">{{item.nm}}</div>
+                  <span class="version"></span>
                 </div>
-                <div class="actor">主演: {{item.star}}</div>
-                <div class="show-info">{{item.showInfo}}</div>
+                <div class="title-bot">
+                  <div class="score">
+                    <span class="grade">{{item.wish}}</span>
+                    <span class="score-line">人想看</span>
+                  </div>
+                  <div class="actor">主演: {{item.star}}</div>
+                  <div class="show-info">{{item.showInfo}}</div>
+                </div>
+              </div>
+              <div class="shop">
+                <div class="shop-main">预售</div>
               </div>
             </div>
-            <div class="shop">
-              <div class="shop-main">预售</div>
-            </div>
-          </div>
-        </li>
+          </li>
+        </div>
+
       </van-list>
     </ul>
   </div>
@@ -57,7 +61,7 @@
 import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
   computed: {
-    ...mapState('films', ['advTopList', 'advBlist', 'secFlag']),
+    ...mapState('films', ['advTopList', 'advBlist', 'secFlag', 'advDate']),
     ...mapGetters('films', [
       'finished'
     ]),
@@ -173,104 +177,114 @@ export default {
         }
       }
     }
-    .main-li-advance {
-      padding-left: 15px;
+    .film-adv{
       background: #fff;
-      .avatar {
-        width: 64px;
-        height: 90px;
-        position: relative;
-        margin-top: 12px;
-        float: left;
-        img {
-          width: 100%;
-          height: 90px;
-        }
+      .film-date{
+        padding: 12px 15px 0;
+        margin: 0;
+        font-size: 14px;
+        color: #333;
       }
-      .avatar-right {
-        padding: 12px 14px 12px 0;
-        margin-left: 74px;
-        height: 90px;
-        max-height: 90px;
-        position: relative;
-        border-bottom: 1px solid #ccc;
-        .title {
-          padding-right: 5px;
-          margin-right: 48px;
-          overflow: hidden;
-          .title-top {
-            max-height: 24px;
-            margin-bottom: 7px;
-            line-height: 24px;
-            overflow: hidden;
-            display: flex;
-            .title-main {
-              font-size: 17px;
-              color: #333;
-              font-weight: 700;
-              padding-right: 5px;
-              flex-shrink: 1;
-              text-overflow: ellipsis;
-              overflow: hidden;
-              white-space: nowrap;
-            }
+      .main-li-advance {
+        padding-left: 15px;
+        background: #fff;
+        .avatar {
+          width: 64px;
+          height: 90px;
+          position: relative;
+          margin-top: 12px;
+          float: left;
+          img {
+            width: 100%;
+            height: 90px;
           }
-          .title-bot {
-            box-sizing: border-box;
-            line-height: 1;
+        }
+        .avatar-right {
+          padding: 12px 14px 12px 0;
+          margin-left: 74px;
+          height: 90px;
+          max-height: 90px;
+          position: relative;
+          border-bottom: 1px solid #ccc;
+          .title {
+            padding-right: 5px;
+            margin-right: 48px;
             overflow: hidden;
-            .score {
-              font-size: 13px;
-              color: #666;
-              .grade {
+            .title-top {
+              max-height: 24px;
+              margin-bottom: 7px;
+              line-height: 24px;
+              overflow: hidden;
+              display: flex;
+              .title-main {
+                font-size: 17px;
+                color: #333;
                 font-weight: 700;
-                color: #faaf00;
-                font-size: 15px;
+                padding-right: 5px;
+                flex-shrink: 1;
+                text-overflow: ellipsis;
+                overflow: hidden;
                 white-space: nowrap;
               }
             }
-            .actor {
-              font-size: 13px;
-              color: #666;
-              margin-top: 6px;
-              line-height: 15px;
+            .title-bot {
+              box-sizing: border-box;
+              line-height: 1;
               overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-            }
-            .show-info {
-              font-size: 13px;
-              color: #666;
-              margin-top: 6px;
-              line-height: 15px;
+              .score {
+                font-size: 13px;
+                color: #666;
+                .grade {
+                  font-weight: 700;
+                  color: #faaf00;
+                  font-size: 15px;
+                  white-space: nowrap;
+                }
+              }
+              .actor {
+                font-size: 13px;
+                color: #666;
+                margin-top: 6px;
+                line-height: 15px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              }
+              .show-info {
+                font-size: 13px;
+                color: #666;
+                margin-top: 6px;
+                line-height: 15px;
+              }
             }
           }
-        }
-        .shop {
-          font-size: 12px;
-          position: absolute;
-          right: 14px;
-          top: 0;
-          bottom: 0;
-          height: 27px;
-          margin: auto;
-
-          .shop-main {
-            width: 47px;
-            height: 27px;
-            line-height: 28px;
-            text-align: center;
-            box-sizing: border-box;
-            background-color: #3c9fe6;
-            color: #fff;
-            border-radius: 4px;
-            white-space: nowrap;
+          .shop {
             font-size: 12px;
-            cursor: pointer;
+            position: absolute;
+            right: 14px;
+            top: 0;
+            bottom: 0;
+            height: 27px;
+            margin: auto;
+
+            .shop-main {
+              width: 47px;
+              height: 27px;
+              line-height: 28px;
+              text-align: center;
+              box-sizing: border-box;
+              background-color: #3c9fe6;
+              color: #fff;
+              border-radius: 4px;
+              white-space: nowrap;
+              font-size: 12px;
+              cursor: pointer;
+            }
           }
         }
       }
     }
+
   }
 
 }

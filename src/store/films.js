@@ -7,6 +7,7 @@ const state = {
   advBlist: [],
   advMovieIds: [],
   newAdvMovieIds: [],
+  advDate: [],
   secFlag: true,
   newPageNum: 0,
   filmPageSize: 10, // 默认每页显示十条
@@ -44,8 +45,32 @@ const mutations = {
     state.newPageNum++
   },
   addFilmAdvBList (state, list) {
+    let arr = []
+    list.forEach(x => {
+      let obj = {}
+      obj.filmDate = x.comingTitle
+      obj.list = []
+      if (x.comingTitle === obj.filmDate) {
+        obj.list.push(x)
+      }
+      if (arr.indexOf(obj) < 0) {
+        arr.push(obj)
+      }
+    })
+    let arr1 =[]
+    arr = arr.reduce((a, b) => {
+      if (a.filmDate===b.filmDate){
+        a.list = [...a.list,...b.list]
+        return a
+      } else{
+        arr1.push(b)
+        return b
+      }
+    },[])
+    state.advDate.push(...arr1)
     state.advBlist.push(...list)
   },
+
 
   /**
    * 替换请求地址中图片路径
