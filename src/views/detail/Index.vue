@@ -3,7 +3,7 @@
     <van-nav-bar
       :title="detailMovieList.nm"
       left-arrow
-      @click-left="onClickLeft"
+      @click-left="onClickLeft1"
     />
     <div class="detail-box">
       <div class="movie-d">
@@ -73,7 +73,7 @@ export default {
       this.setday(title)
       this.getcinemafilmList()
     },
-    onClickLeft () {
+    onClickLeft1 () {
       this.$router.push({ path: '/films/hotPlaying' })
     }
   },
