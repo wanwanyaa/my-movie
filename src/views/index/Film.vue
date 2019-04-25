@@ -43,7 +43,9 @@ export default {
       'getcinnavList'
     ]),
     gosearch() {
-      this.$router.push({ path: '/search' })
+      setTimeout(() => {
+        this.$router.push({ path: '/search' })
+      }, 200);
     },
     changeType (index, active) {
       let filmType = index === 1 ? 'hotPlaying' : 'shownSoon'
