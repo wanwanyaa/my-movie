@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="heads">
       <van-nav-bar
       title="猫眼电影"
@@ -75,10 +74,10 @@
               <span class="Cinema-distance">{{ attr.distance }}</span>
             </div>
             <div class="Cinema-block">
-              <div class="green-c com-block">退</div>
-              <div class="green-c com-block">改签</div>
-              <div class="yellow-c com-block">小吃</div>
-              <div class="yellow-c com-block">折扣卡</div>
+              <div class="green-c com-block" v-show="attr.allowRefund === 1">退</div>
+              <div class="green-c com-block" v-show="attr.endorse">改签</div>
+              <div class="yellow-c com-block" v-show="attr.snack === 1">小吃</div>
+              <div class="yellow-c com-block" v-show="attr.vipDesc === '折扣卡'">折扣卡</div>
               <!-- <div class="green-c com-block">还有啥</div> -->
             </div>
           </div>
@@ -89,10 +88,10 @@
     </div>
   </div>
 </template>
+
 <script>
 import { mapActions, mapState, mapMutations,mapGetters } from 'vuex'
 export default {
-  name: "HelloWorld",
   computed: {
     ...mapState('search',[
       'MovieList',
@@ -111,12 +110,7 @@ export default {
       }
     }
   },
-  // data() {
-  //   console.log(this.inpValue)
-  //   return {
-  //     value: this.inpValue
-  //   };
-  // },
+
   watch: {
     value(newValue, oldValue){
       this.getMovieList()
@@ -130,21 +124,13 @@ export default {
     ]),
     ...mapActions('search',[
       'getMovieList'
-    ]),
-    onCancel() { // 点击取消事件
-
-    },
-    onSearch() {  // 回车事件
-
-    }
+    ])
   },
   created() {
-    console.log(1)
     this.getMovieList()
     this.setValue()
   },
-};
-
+}
 </script>
 
 <style lang="less" scoped>
