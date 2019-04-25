@@ -46,6 +46,7 @@
 import introduce from '@/components/introduce.vue'
 import Adresscinema2 from '@/components/Adresscinema2.vue'
 import { mapMutations, mapState, mapActions } from 'vuex'
+import { setTimeout } from 'timers';
 export default {
   computed: {
     ...mapState('cinema', [
@@ -79,7 +80,13 @@ export default {
   created () {
     this.setfilmId(this.$route.params.filmId - 0)
     this.getcinemafilmList()
+
     this.getcinemafilmList2()
+  },
+  mounted () {
+    setTimeout(x=>{
+      this.onClick(0,this.showdateList.dates[0].date)
+    },800)
   }
 }
 </script>

@@ -49,7 +49,7 @@ export default {
     ])
   },
   created () {
-    this.getcinemafilmList()
+    // this.getcinemafilmList()
   }
 }
 </script>

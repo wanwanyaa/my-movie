@@ -10,7 +10,7 @@ const state = {
   hallTypeList: [],
   districtList: [],
   subwayList: [],
-  daylist: [],
+  daylist: '',
   detailsList: [],
   showdateList: [],
   setfilmId: [],
@@ -125,7 +125,7 @@ const actions = {
         day: rootState.cinema.daylist,
         movieId: rootState.cinema.setfilmId
       },{
-          headers: {
+          headers: { 
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
           }
       }).then(res => {
