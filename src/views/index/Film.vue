@@ -13,7 +13,7 @@
       <van-tab title="即将上映">
         <Advance/>
       </van-tab>
-      <van-tab disabled><van-icon name="search" slot="title" /></van-tab>
+      <van-tab disabled><van-icon name="search" slot="title" @click="gosearch()" /></van-tab>
     </van-tabs>
   </div>
 </template>
@@ -42,6 +42,9 @@ export default {
     ...mapActions('cinema', [
       'getcinnavList'
     ]),
+    gosearch() {
+      this.$router.push({ path: '/search' })
+    },
     changeType (index, active) {
       let filmType = index === 1 ? 'hotPlaying' : 'shownSoon'
       this.$router.replace({
@@ -90,6 +93,7 @@ export default {
     font-size: 20px;
     color: #e54847;
     font-weight:700;
+    line-height:44px;
   }
   .van-tabs__nav,.van-tab--active{
     font-size: 15px;

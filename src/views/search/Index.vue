@@ -1,11 +1,7 @@
 <template>
   <div>
-
-    <div class="heads">
-      <van-nav-bar
-      title="猫眼电影"
-      left-arrow
-    />
+    <div class="heads">猫眼电影
+      <div class="backhome" @click="backqian()">＜</div>
     </div>
     <form action="/">
       <van-search
@@ -120,7 +116,6 @@ export default {
   watch: {
     value(newValue, oldValue){
       this.getMovieList()
-      console.log(this.CinemaList)
     }
 
   },
@@ -136,10 +131,12 @@ export default {
     },
     onSearch() {  // 回车事件
 
+    },
+    backqian() {
+      this.$router.go(-1)
     }
   },
   created() {
-    console.log(1)
     this.getMovieList()
     this.setValue()
   },
@@ -148,7 +145,23 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+.heads{
+  color: #fff;
+  width:100%;
+  height:50px;
+  font-size: 18px;
+  font-weight: 400;
+  background: #e54847;
+  text-align: center;
+  line-height: 50px;
+  position: relative;
+  .backhome{
+    position: absolute;
+    top:0;
+    left: 10px;
+    font-size:35px;
+  }
+}
 .van-search{
   height: 47px;
 }
