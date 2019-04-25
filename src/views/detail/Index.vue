@@ -80,7 +80,6 @@ export default {
   created () {
     this.setfilmId(this.$route.params.filmId - 0)
     this.getcinemafilmList()
-
     this.getcinemafilmList2()
   },
   mounted () {

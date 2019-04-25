@@ -5,7 +5,7 @@
     </div>
     <van-tabs v-model="active" @click="changeType">
       <van-tab disabled>
-        <span class="address" slot="title" >深圳 <i class="iconfont icon-sanjiaoxia"></i></span>
+        <span class="address" slot="title" @click="checkcity()">{{curCity}} <i class="iconfont icon-sanjiaoxia"></i></span>
       </van-tab>
       <van-tab title="正在热映">
         <HotShowing/>
@@ -21,6 +21,7 @@
 <script>
 import HotShowing from '@/components/HotShowing.vue'
 import Advance from '@/components/Advance.vue'
+import { mapState, mapActions } from 'vuex'
 export default {
   data () {
     let active = this.$route.params.filmType === 'hotPlaying' ? 1 : 2
@@ -28,11 +29,19 @@ export default {
       active: active
     }
   },
+  computed: {
+    ...mapState('city', [
+      'curCity'
+    ])
+  },
   components: {
     HotShowing,
     Advance
   },
   methods: {
+    ...mapActions('cinema', [
+      'getcinnavList'
+    ]),
     changeType (index, active) {
       let filmType = index === 1 ? 'hotPlaying' : 'shownSoon'
       this.$router.replace({
@@ -41,7 +50,15 @@ export default {
           filmType
         }
       })
+    },
+    checkcity () {
+      setTimeout(() => {
+        this.$router.push({ path: '/city' })
+      }, 200);
     }
+  },
+  created () {
+    this.getcinnavList();
   }
 }
 </script>
