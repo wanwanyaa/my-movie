@@ -18,7 +18,7 @@
           </div>
         </div>
       </section>
-      <div class="pos-Cinema" id="pos-qc">
+      <div class="pos-Cinema1" id="pos-qc">
         <van-tabs @click="onClick">
           <van-tab title="商区">
             <van-tree-select
@@ -27,7 +27,7 @@
               :active-id="activeId"
               @navclick="onNavClick"
               @itemclick="onItemClick"
-              :height= 402
+              :height= 355
             />
           </van-tab>
           <van-tab title="地铁站">
@@ -37,18 +37,18 @@
               :active-id="activeId"
               @navclick="onNavClick"
               @itemclick="onItemClick"
-              :height= 402
+              :height= 355
             />
           </van-tab>
         </van-tabs>
       </div>
-      <div class="pos-Cinema" id="pos-pp">
+      <div class="pos-Cinema1" id="pos-pp">
         <div class="brand-contentpp" v-for="item in ppList" :key="item.id" @click="changestyle($event)">
           <div class="contentpp-1"><span class="small-span">√</span> {{item.name}} </div>
           <div class="contentpp-2"> {{item.count}} </div>
         </div>
       </div>
-      <div class="pos-Cinema" id="pos-tc">
+      <div class="pos-Cinema1" id="pos-tc">
         <div class="tc-spacial-top">
           <div class="item-title">特色功能</div>
           <div class="button-box" id="tsgn-box1">
@@ -154,7 +154,7 @@ export default {
         allitemBoxi.classList.add('city-entry-arrow')
         allitemBoxi.classList.remove('city-top-arrow')
       }
-      let allposCinema = document.getElementsByClassName('pos-Cinema')
+      let allposCinema = document.getElementsByClassName('pos-Cinema1')
       for (var a = 0; a < allposCinema.length; a++) {
         allposCinema[a].style.cssText = 'display:none'
       }
@@ -280,12 +280,12 @@ html {
     background: rgba(0,0,0,.3);
     display:none;
   }
-  .pos-Cinema{
+  .pos-Cinema1{
     z-index:100;
     width:100%;
     height:446px;
     position: absolute;
-    top:0px;
+    top:40px;
     display:none;
   }
   #pos-tc{

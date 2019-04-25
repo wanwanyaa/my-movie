@@ -12,19 +12,15 @@ const state = {
 
 const mutations = {
   setMovieList(state,list){
-    console.log(list)
     state.MovieList = list
   },
   setCinemaList (state,list) {
-    console.log(list)
     state.CinemaList = list
   },
   setCinemaListNum (state,list) {
-    console.log(list)
     state.CinemaListNum = list
   },
   setValue (state,value) {
-    console.log(value)
     state.inpValue = value
   },
   setMovieListNum (state,list) {
@@ -43,7 +39,6 @@ const mutations = {
 
 const actions = {
   getMovieList ({ commit ,state}) {
-    console.log(1)
     axios.get('/maoyan/ajax/search',{
       params: {
         kw: state.inpValue,
@@ -52,12 +47,10 @@ const actions = {
       },
     }).then(res =>{
       let result = res.data
-      console.log(result.cinemas)
       if (result.cinemas) {
         commit('setCinemaList',result.cinemas.list)
         commit('setCinemaListNum',result.cinemas)
       }else{
-        console.log('dsadsad')
        state.CinemaList = null
       }
       if (result.movies) {
