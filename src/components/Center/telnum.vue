@@ -19,7 +19,7 @@
     </van-cell-group>
       <!--登录按钮-->
       <div class="Btn">
-        <button class="login" @click="getlll">登录</button>
+        <button class="login">登录</button>
       </div>
       <ul class="subline">
         <li><a href="">立即注册</a></li>
@@ -42,7 +42,8 @@ export default {
       active: 0,
       username:'',
       password:'',
-      add:''
+      add:'',
+      sms:''
     };
   },
 };

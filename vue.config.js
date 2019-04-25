@@ -5,7 +5,6 @@ module.exports = {
         target: 'http://m.maoyan.com',
         pathRewrite: { '^/maoyan' : '' }
       }
-
     }
   }
 }
