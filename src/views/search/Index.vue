@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="heads">
       <van-nav-bar
       title="猫眼电影"
@@ -12,8 +11,6 @@
         v-model="value"
         placeholder="搜电影、搜影院"
         show-action
-        @cancel="onCancel"
-        @search="onSearch"
         background="#f5f5f5"
       />
     </form>
@@ -111,16 +108,9 @@ export default {
       }
     }
   },
-  // data() {
-  //   console.log(this.inpValue)
-  //   return {
-  //     value: this.inpValue
-  //   };
-  // },
   watch: {
     value(newValue, oldValue){
       this.getMovieList()
-      console.log(this.CinemaList)
     }
 
   },
@@ -130,25 +120,16 @@ export default {
     ]),
     ...mapActions('search',[
       'getMovieList'
-    ]),
-    onCancel() { // 点击取消事件
-
-    },
-    onSearch() {  // 回车事件
-
-    }
+    ])
   },
   created() {
-    console.log(1)
     this.getMovieList()
     this.setValue()
   },
 };
-
 </script>
 
 <style lang="less" scoped>
-
 .van-search{
   height: 47px;
 }
