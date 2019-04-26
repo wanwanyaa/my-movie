@@ -7,6 +7,7 @@ import Center from '@/views/index/Center.vue'
 import City from '@/views/city/Index.vue'
 import Detail from '@/views/detail/Index.vue'
 import search from '@/views/search/Index.vue'
+import cinemaDetail from '@/views/cinemaDetail/Index.vue'
 
 
 Vue.use(VueRouter)
@@ -25,7 +26,9 @@ const router = new VueRouter({
     },
     { path: '/city', name: 'city', component: City },
     { path: '/details/:filmId', name: 'details', component: Detail },
-    { path: '/search', name: 'search' , component: search }
+    { path: '/search', name: 'search' , component: search },
+    { path: '/cinemaDetails/:cinemaId', name: 'cinemaDetails', component: cinemaDetail },
+
   ]
 })
 

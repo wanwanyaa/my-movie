@@ -5,7 +5,7 @@
       <section class="nav-wrap">
         <div class="tab-cin" @click="openblack()">
           <div class="item" @click="changecolor($event);openqc()">
-            全程
+            全城
             <i class="city-entry-arrow"></i>
           </div>
           <div class="item" @click="changecolor($event);openpp()">

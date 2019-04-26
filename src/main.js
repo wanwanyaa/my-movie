@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { Tabbar, TabbarItem, NavBar, Tab, Tabs, Icon, List, Field, Cell, CellGroup, TreeSelect, Toast, Search, Button } from 'vant'
+import { Tabbar, TabbarItem, NavBar, Tab, Tabs, Icon, List, Field, Cell, CellGroup, TreeSelect, Toast, Search, Button, Swipe, SwipeItem } from 'vant'
 
 Vue.config.productionTip = false
 
@@ -20,6 +20,8 @@ Vue.use(Tabbar)
   .use(TreeSelect)
   .use(Search)
   .use(Button)
+  .use(Swipe)
+  .use(SwipeItem)
 
 new Vue({
   router,

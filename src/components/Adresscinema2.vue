@@ -1,6 +1,12 @@
 <template>
   <section class="Cinema">
-    <div class="Cinema-list" v-for="item in detailsList" :key="item.id">
+    <router-link
+      tag="div"
+      :to="{ name:'cinemaDetails', params:{ cinemaId:'123' }}"
+      class="Cinema-list"
+      v-for="item in detailsList"
+      :key="item.id"
+    >
       <div class="Cinema-title">
         <div class="Cinema-head">
           <span>{{ item.nm }}</span>
@@ -31,7 +37,7 @@
           <span>{{item.showTimes}}</span>
         </div>
       </div>
-    </div>
+    </router-link>
   </section>
 </template>
 
