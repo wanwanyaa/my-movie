@@ -20,7 +20,7 @@
             </li>
           </ul>
         </div>
-        <div class="film-adv" v-for="movie in advDate" :key="movie.filmDate">
+        <div class="film-adv" v-for="movie in advDate" :key="movie.list[0].nm">
           <p class="film-date">{{movie.filmDate}}</p>
           <li class="main-li-advance" v-for="item in movie.list" :key="item.id">
             <div class="avatar">
@@ -38,7 +38,8 @@
                     <span class="score-line">人想看</span>
                   </div>
                   <div class="actor">主演: {{item.star}}</div>
-                  <div class="show-info">{{item.showInfo}}</div>
+                  <div class="show-info" v-show="item.showInfo">{{item.showInfo}}</div>
+                  <div class="show-info" v-show="!item.showInfo">{{item.rt}} 上映</div>
                 </div>
               </div>
               <div class="shop">
