@@ -22,7 +22,7 @@
           <div class="title">
             <div class="title-top">
               <div class="title-main">{{ item.nm }}</div>
-              <span class="version"></span>
+              <span class="version" v-show="item.version ==='v3d imax'"></span>
               <div class="wish" v-show="item.sc == 0">
                 <span class="grade">{{ item.wish }}</span>人想看
               </div>
@@ -49,8 +49,8 @@
           </div>
         </div>
       </li>
-      <div class="all">查看全部<span>{{ MovieListNum.total }}</span>部影视剧</div>
      </div>
+     <div class="all" v-show="MovieList && MovieListNum.total > 3">查看全部<span>{{ MovieListNum.total }}</span>部影视剧</div>
     <!--影院-->
     <div class="Cinemas" v-show="CinemaList">
       <h3>影院</h3>
@@ -78,9 +78,9 @@
           </div>
         </div>
       </section>
-     <div class="all" v-show="CinemaListNum.total > 3">查看全部<span>{{ CinemaListNum.total }}</span>家电影院</div>
-
     </div>
+    <div class="all" v-show="CinemaList && CinemaListNum.total > 3">查看全部<span>{{ CinemaListNum.total }}</span>家电影院</div>
+    <!-- CinemaListNum.total > 3 -->
   </div>
 </template>
 
@@ -191,6 +191,7 @@ export default {
   .MovieLists{
     max-height: 383px;
     overflow: hidden;
+    background: white;
   }
   h3{
       font-size: 15px;
@@ -340,6 +341,7 @@ export default {
         font-size: 15px;
         color: #ef4238;
         border-bottom: 10px solid #f5f5f5;
+        background: white;
       }
 
 

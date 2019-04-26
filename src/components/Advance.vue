@@ -1,12 +1,7 @@
 <template>
   <div class="my-adv">
-    <ul class="bottom-box" >
-      <van-list
-        v-model="loading"
-        :finished="finished"
-        finished-text="没有更多了"
-        @load="onLoad"
-      >
+    <ul class="bottom-box">
+      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
         <div class="swiper">
           <p>近期最受期待</p>
           <ul class="swiper-ul">
@@ -47,49 +42,48 @@
                 </div>
               </div>
               <div class="shop">
-                <div class="shop-main">预售</div>
+                <div class="shop-main shop-red" v-if="item.showst === 3">购票</div>
+                <div class="shop-main shop-yellow" v-if="item.showst === 1">想看</div>
+                <div class="shop-main" v-if="item.showst === 4">预售</div>
               </div>
             </div>
           </li>
         </div>
-
       </van-list>
     </ul>
   </div>
 </template>
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapState, mapActions, mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapState('films', ['advTopList', 'advBlist', 'secFlag', 'advDate']),
-    ...mapGetters('films', [
-      'finished'
-    ]),
+    ...mapState("films", ["advTopList", "advBlist", "secFlag", "advDate"]),
+    ...mapGetters("films", ["finished"]),
     loading: {
-      get () {
-        return this.$store.state.films.loading
+      get() {
+        return this.$store.state.films.loading;
       },
-      set (value) {
-        return this.$store.commit('films/setLoading', value)
+      set(value) {
+        return this.$store.commit("films/setLoading", value);
       }
     }
   },
   methods: {
-    ...mapActions('films', [
-      'getFilmAdvToplist',
-      'getFilmAdvBlist',
-      'getNextAdvBList'
+    ...mapActions("films", [
+      "getFilmAdvToplist",
+      "getFilmAdvBlist",
+      "getNextAdvBList"
     ]),
-    onLoad () {
+    onLoad() {
       if (this.secFlag) {
-        this.getFilmAdvBlist()
-        this.getFilmAdvToplist()
+        this.getFilmAdvBlist();
+        this.getFilmAdvToplist();
       } else {
-        this.getNextAdvBList()
+        this.getNextAdvBList();
       }
     }
   }
-}
+};
 </script>
 
 <style lang="less">
@@ -97,8 +91,8 @@ export default {
   box-sizing: border-box;
   flex: 1;
   overflow-y: auto;
-  .bottom-box{
-    height:523px;
+  .bottom-box {
+    height: 523px;
     .swiper {
       padding: 12px 0 12px 15px;
       background-color: #fff;
@@ -177,9 +171,9 @@ export default {
         }
       }
     }
-    .film-adv{
+    .film-adv {
       background: #fff;
-      .film-date{
+      .film-date {
         padding: 12px 15px 0;
         margin: 0;
         font-size: 14px;
@@ -280,12 +274,16 @@ export default {
               font-size: 12px;
               cursor: pointer;
             }
+            .shop-red {
+              background-color: #ef4238;
+            }
+            .shop-yellow {
+              background-color: #faaf00;
+            }
           }
         }
       }
     }
-
   }
-
 }
 </style>
