@@ -191,7 +191,6 @@ export default {
         tsgnbtn[i].classList.remove('tsgn')
       }
       let tsgnBox1 = event.currentTarget
-      console.log(tsgnBox1)
       tsgnBox1.classList.add('tsgn')
     },
     changets (event) {

@@ -26,7 +26,7 @@
             <div class="card-sale">{{ item.promotion.cardPromotionTag }}</div>
           </div>
         </div>
-        <div class=Cinema-time>
+        <div class=Cinema-time v-show="item.showTimes">
           <span>近期场次</span>
           <span>{{item.showTimes}}</span>
         </div>
