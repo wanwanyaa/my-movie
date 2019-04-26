@@ -3,7 +3,6 @@
     <van-cell-group>
       <!--号码-->
       <van-field
-        v-model="sms"
         center
         clearable
         placeholder="请输入手机号"
@@ -35,15 +34,11 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-
 export default {
   data() {
     return {
       active: 0,
-      username:'',
-      password:'',
-      add:'',
-      sms:''
+      add:''
     };
   },
 };

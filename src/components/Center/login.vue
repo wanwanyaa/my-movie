@@ -3,20 +3,20 @@
     <van-cell-group>
       <!--账号-->
       <van-field
-        v-model="username"
+        v-model="usernames"
         clearable
         border
         placeholder="账户名/手机号/Email"
       />
       <!--密码-->
       <van-field
-        v-model="password"
+        v-model="passwords"
         type="password"
         placeholder="请输入你的密码"/>
     </van-cell-group>
       <!--登录按钮-->
       <div class="Btn">
-        <button class="login" @click="getlll">登录</button>
+        <button class="login" @click="fn">登录</button>
       </div>
       <ul class="subline">
         <li><a href="">立即注册</a></li>
@@ -31,25 +31,28 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
-
+import { mapState } from 'vuex'
 
 export default {
+  computed: {
+  ...mapState('center',[
+    'username',
+    'password'
+  ])},
   data() {
     return {
       active: 0,
-      username:'',
-      password:''
+      usernames: '123456',
+      passwords: '123456',
+      show: false
     };
   },
   methods: {
-    getlll () {
-      axios.get('http://api.feige.ee/SmsService/Template',{
-        Mobile:15180530812,
-        Account: 'wwww',
-        Pwd: 'ssssss',
-        Content: 'dsadsa',
-        needstatus: true
-      })
+    fn () {
+      if (this.username == this.usernames && this.password == this.passwords) {
+        this.$router.push('/login')
+        localStorage.value = 'success'
+      }
     }
   },
 };
