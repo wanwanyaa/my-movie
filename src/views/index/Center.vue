@@ -1,21 +1,24 @@
 <template>
   <div>
-    <div class="head">
-      <van-nav-bar
-      title="猫眼电影"
-      left-arrow
-    />
+    <div>
+      <div class="head">
+        <van-nav-bar
+        title="猫眼电影"
+        left-arrow
+        @click-left="fn"
+      />
+      </div>
+      <van-tabs
+        v-model="active"
+        title-active-color="#df2d2d"
+        :line-width= 175
+        :line-height= 4
+        :title-inactive-boder="0"
+      >
+        <van-tab title="美团账号登录"><Login /></van-tab>
+        <van-tab title="手机验证登录"><telnum /></van-tab>
+      </van-tabs>
     </div>
-    <van-tabs
-      v-model="active"
-      title-active-color="#df2d2d"
-      :line-width= 175
-      :line-height= 4
-      :title-inactive-boder="0"
-    >
-      <van-tab title="美团账号登录"><Login /></van-tab>
-      <van-tab title="手机验证登录"><telnum /></van-tab>
-    </van-tabs>
   </div>
 </template>
 
@@ -31,7 +34,12 @@ export default {
   components:{
     Login,
     Telnum
-  }
+  },
+  methods: {
+    fn(){
+      this.$router.push('/')
+    }
+  },
 };
 </script>
 

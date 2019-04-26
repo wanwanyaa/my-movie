@@ -3,7 +3,6 @@
     <van-cell-group>
       <!--号码-->
       <van-field
-        v-model="sms"
         center
         clearable
         placeholder="请输入手机号"
@@ -19,7 +18,7 @@
     </van-cell-group>
       <!--登录按钮-->
       <div class="Btn">
-        <button class="login" @click="getlll">登录</button>
+        <button class="login">登录</button>
       </div>
       <ul class="subline">
         <li><a href="">立即注册</a></li>
@@ -35,13 +34,10 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-
 export default {
   data() {
     return {
       active: 0,
-      username:'',
-      password:'',
       add:''
     };
   },
