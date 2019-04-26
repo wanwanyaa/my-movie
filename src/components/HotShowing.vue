@@ -25,9 +25,13 @@
             </div>
 
             <div class="title-bot">
-              <div class="score">
+              <div class="score" v-show="item.sc != 0">
                 <span class="score-line">观众评</span>
                 <span class="grade">{{item.sc}}</span>
+              </div>
+              <div class="score" v-show="item.sc == 0">
+                    <span class="grade">{{item.wish}}</span>
+                    <span class="score-line">人想看</span>
               </div>
               <div class="actor">主演: {{item.star}}</div>
               <div class="show-info">{{item.showInfo}}</div>

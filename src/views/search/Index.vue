@@ -356,6 +356,7 @@ export default {
   .Cinemas {
     max-height: 330px;
     overflow: hidden;
+    background: white;
   .Cinema {
     .Cinema-list {
       width: 100%;
