@@ -15,7 +15,10 @@ const state = {
   showdateList: [],
   setfilmId: [],
   detailMovieList: [],
-  imgurl: []
+  imgurl: [],
+  cityformid: [],
+  serviceId: [],
+  hallType: []
 }
 
 const mutations = {
@@ -62,6 +65,15 @@ const mutations = {
     let url1 = payload.replace("w.h", "128.180");
     state.imgurl = url1
   },
+  setcityformid (state, payload) {
+    state.cityformid = payload;
+  },
+  setserviceId (state, list) {
+    state.serviceId = list
+  },
+  sethallType (state, list) {
+    state.hallType = list
+  }
 }
 
 const actions = {
@@ -148,6 +160,33 @@ const actions = {
       if (res.status === 200) {
         commit('setdetailMovieList', result.detailMovie)
         commit('changeimgUrl', result.detailMovie.img)
+      } else {
+        alert(result.msg)
+      }
+    })
+  },
+  getcityformpp ({commit, rootState}) {
+    axios.get('/maoyan/ajax/cinemaList?', {
+      params: {
+        day:rootState.cinema.daylist,
+        offset:0,
+        limit:20,
+        districtId:-1,
+        lineId:-1,
+        hallType:rootState.cinema.hallType,
+        brandId:rootState.cinema.cityformid,
+        serviceId:rootState.cinema.serviceId,
+        areaId:-1,
+        stationId:-1,
+        updateShowDay:false,
+        reqId:Date.now(),
+        cityId:1
+      }
+    }).then(res => {
+      let result = res.data
+      if (res.status === 200) {
+        commit('setCinemaList', result.cinemas)
+        commit('setdetails',result.cinemas)
       } else {
         alert(result.msg)
       }

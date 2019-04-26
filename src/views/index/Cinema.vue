@@ -19,7 +19,7 @@
       <section class="nav-wrap">
         <div class="tab-cin" @click="openblack()">
           <div class="item" @click="changecolor($event);openqc()">
-            全程
+            全城
             <i class="city-entry-arrow"></i>
           </div>
           <div class="item" @click="changecolor($event);openpp()">
@@ -57,7 +57,7 @@
         </van-tabs>
       </div>
       <div class="pos-Cinema" id="pos-pp">
-        <div class="brand-contentpp" v-for="item in ppList" :key="item.id" @click="changestyle($event)">
+        <div class="brand-contentpp" v-for="item in ppList" :key="item.id" @click="changestyle($event);cityformpp(item.id)">
           <div class="contentpp-1"><span class="small-span">√</span> {{item.name}} </div>
           <div class="contentpp-2"> {{item.count}} </div>
         </div>
@@ -66,16 +66,16 @@
         <div class="tc-spacial-top">
           <div class="item-title">特色功能</div>
           <div class="button-box" id="tsgn-box1">
-            <div class="button-chosen" v-for="item2 in serveList" :key="item2.count" @click="changetc($event)">{{item2.name}}</div>
+            <div class="button-chosen" v-for="item2 in serveList" :key="item2.count" @click="changetc($event);changeserviceId(item2.id)">{{item2.name}}</div>
           </div>
           <div class="item-title">特殊厅</div>
           <div class="button-box" id="tsgn-box2">
-            <div class="button-chosen" v-for="item3 in hallTypeList" :key="item3.name" @click="changets($event)">{{item3.name}}</div>
+            <div class="button-chosen" v-for="item3 in hallTypeList" :key="item3.name" @click="changets($event);changehallType(item3.id)">{{item3.name}}</div>
           </div>
         </div>
         <div class="tc-spacial-bottom">
-          <div class="button-cz">重置</div>
-          <div class="button-tj">提交</div>
+          <div class="button-cz" @click="goback()">重置</div>
+          <div class="button-tj" @click="golast()">提交</div>
         </div>
       </div>
       <section class="cin-Cinema">
@@ -115,10 +115,15 @@ export default {
   },
   methods: {
     ...mapMutations('cinema', [
-      'setitems'
+      'setitems',
+      'setcityformid',
+      'setserviceId',
+      'sethallType'
     ]),
     ...mapActions('cinema', [
-      'getcinnavList'
+      'getcinnavList',
+      'getcityformpp',
+      'getcinemaList'
     ]),
     onNavClick (index) {
       this.mainActiveIndex = index
@@ -242,6 +247,40 @@ export default {
         }
         this.setitems(newarr8)
       }, 400)
+    },
+    cityformpp (cityformid) {
+      let black1 = document.getElementsByClassName('blacker')[0]
+      let threebox = document.getElementsByClassName('pos-Cinema')
+      for (let i = 0; i<threebox.length ; i++) {
+        threebox[i].style.cssText='display:none'
+      }
+      black1.style.cssText = 'display:none'
+      this.setcityformid(cityformid)
+      this.getcityformpp()
+    },
+    changeserviceId (serviceId) {
+      this.setserviceId(serviceId)
+    },
+    changehallType (hallType) {
+      this.sethallType(hallType)
+    },
+    golast () {
+      let black1 = document.getElementsByClassName('blacker')[0]
+      let threebox = document.getElementsByClassName('pos-Cinema')
+      for (let i = 0; i<threebox.length ; i++) {
+        threebox[i].style.cssText='display:none'
+      }
+      black1.style.cssText = 'display:none'
+       this.getcityformpp()
+    },
+    goback () {
+      let black1 = document.getElementsByClassName('blacker')[0]
+      let threebox = document.getElementsByClassName('pos-Cinema')
+      for (let i = 0; i<threebox.length ; i++) {
+        threebox[i].style.cssText='display:none'
+      }
+      black1.style.cssText = 'display:none'
+      this.getcinemaList()
     }
   },
   created () {
